@@ -17,13 +17,13 @@ class DataIngestionConfig: ## class store file path
     raw_data_path: str=os.path.join('artifacts',"data.csv")
 
 
-class DataIngestion: ## This class is responsible for loading the data before transforming and training ML models:
+class DataIngestion: ## This Class is responsible for loading the data before transforming and training ML models:
     def __init__(self):
         self.ingestion_config=DataIngestionConfig() ## created an instance of DataIngestionConfig() and assign it to "self.ingestion_config".
     
     # initiate_data_ingestion is actually a method defined for DataIngestion Class:
 
-    def initiate_data_ingestion(self): ## This Funcation is responsible for reading  data from a CSV file,splitting,saving the split datasets into predefined locations.
+    def initiate_data_ingestion(self): ## This funcation is responsible for reading  data from a CSV file,splitting,saving the split datasets into predefined locations.
         logging.info("Starts the data ingestion method")
 
         try:
