@@ -14,6 +14,7 @@ from src.utils import save_object
 
 @dataclass
 class DataTransformationConfig:
+    logging.info("stores the file path for preprocessor.pkl")
     preprocessor_obj_file_path=os.path.join('artifacts',"preprocessor.pkl")
 
 class DataTransformation:
@@ -29,6 +30,8 @@ class DataTransformation:
             numerical_columns=["writing_score","reading_score"]
             categorical_columns=["gender","race_ethnicity","parental_level_of_education","lunch","test_preparation_course"]
 
+            logging.info('Handling missing values using simpleImputer for numerical columns')
+            logging.info("perform standardization for numerical columns")
             num_pipeline=Pipeline(
                 steps=[
                     ("imputer",SimpleImputer(strategy="median")),
@@ -36,6 +39,7 @@ class DataTransformation:
                 ]
             )
 
+            logging.info('handling missing value, encoding,standardization for categorical features')   
             cat_pipeline=Pipeline(
                 steps=[
                     ('imputer',SimpleImputer(strategy="most_frequent")),
@@ -61,7 +65,10 @@ class DataTransformation:
         except Exception as e:
             raise CustomException(e,sys)
         
-
+    
+    logging.info('starting with data transformation')
+    logging.info('This funcation reads train and test CSV file')
+    logging.info('Calls get_data_tramsformation_object to get the preprocessing_obj')
     def initiate_data_transformation(self,train_path,test_path):
 
         try:
@@ -76,14 +83,17 @@ class DataTransformation:
             target_column_name="math_score"
             numerical_columns=["writing_score","reading_score"]
 
+            # Choose independent and dependent features for train_df 
             input_feature_train_df=train_df.drop(columns=[target_column_name],axis=1)
             target_feature_train_df=train_df[target_column_name]
-
+            
+            # Choose independent and dependent features for test_df 
             input_feature_test_df=test_df.drop(columns=[target_column_name],axis=1)
             target_feature_test_df=test_df[target_column_name]
 
             logging.info(f'Applying preprocessing object on training ddataframe anf testing dataframe')
-
+            
+            # Fit and transform
             input_feature_train_arr=preprocessor_obj.fit_transform(input_feature_train_df)
             input_feature_test_arr=preprocessor_obj.transform(input_feature_test_df)
 
@@ -91,8 +101,13 @@ class DataTransformation:
 
             train_arr=np.c_[input_feature_train_arr,np.array(target_feature_train_df)]
             test_arr=np.c_[input_feature_test_arr,np.array(target_feature_test_df)]
+            
+            # store preprocessor_obj as pkl file in save_object
+            # save_object funcation in defined in utils.py
 
             logging.info(f'save preprocessing object')
+            logging.info('call save_object funcation form utils.py')
+            
 
             save_object(
 
