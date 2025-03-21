@@ -102,8 +102,8 @@ class DataTransformation:
             train_arr=np.c_[input_feature_train_arr,np.array(target_feature_train_df)]
             test_arr=np.c_[input_feature_test_arr,np.array(target_feature_test_df)]
             
-            # store preprocessor_obj as pkl file in save_object
-            # save_object funcation in defined in utils.py
+            # Store preprocessor_obj as pkl file in save_object
+            # Save_object funcation in defined in utils.py
 
             logging.info(f'save preprocessing object')
             logging.info('call save_object funcation form utils.py')
