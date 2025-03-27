@@ -39,9 +39,6 @@ To set up the project, follow these steps:
 # Clone the repository
 git clone <repository_url>
 
-# Navigate to the project directory
-cd MLOPS
-
 # Create and activate a virtual environment
  python -m venv venv
 .\venv\Scripts\activate  # For Windows
