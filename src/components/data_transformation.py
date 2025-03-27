@@ -43,7 +43,7 @@ class DataTransformation:
             cat_pipeline=Pipeline(
                 steps=[
                     ('imputer',SimpleImputer(strategy="most_frequent")),
-                    ('One_hot_encoder',OneHotEncoder()),
+                    ('One_hot_encoder',OneHotEncoder(handle_unknown="ignore")),
                     ('scaler',StandardScaler(with_mean=False))
                 ]
             )
@@ -69,6 +69,7 @@ class DataTransformation:
     logging.info('starting with data transformation')
     logging.info('This funcation reads train and test CSV file')
     logging.info('Calls get_data_tramsformation_object to get the preprocessing_obj')
+
     def initiate_data_transformation(self,train_path,test_path):
 
         try:
