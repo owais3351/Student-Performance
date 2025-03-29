@@ -7,7 +7,7 @@ This project demonstrates a complete end-to-end machine learning pipeline with a
 ## Directory Structure
 
 ```
-MLOPS/
+
     ├── artifacts/               # Stores generated datasets, models, and preprocessing pipelines
     ├── catboost_info/           # CatBoost internal information directory
     ├── Logs/                    # Application logs for monitoring and debugging
