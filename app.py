@@ -44,7 +44,7 @@ def predict_datapoint():
 
         # call predict mathod-->to perform transformation
         # Use model.pkl and preprocessor.pkl
-        # and make predictions for above data
+        # And make predictions for above data
         results=predict_pipeline.predict(pred_df)
 
         return render_template('home.html',results=results[0])
